@@ -1,0 +1,107 @@
+version: '3.9'
+
+services:
+  ## Nginx Service
+  nginx:
+    #container_name: "$(COMPOSE_PROJECT_NAME)-nginx"
+    container_name: nginx
+    image: nginx:alpine-slim
+    ports:
+      ## Access from any interfaces 
+      #- "${EXTERNAL_PORT:-80}:80"
+      - "0.0.0.0:${EXTERNAL_PORT:-80}:80"
+      ## Acess from Docker-host itself Only (localhost)
+      #- "127.0.0.1:${EXTERNAL_PORT:-80}:80"
+    #
+    ## Mount read-only (:ro) application code and read-write (:rw) nginx config
+    volumes:
+      - ./www:/var/www/html:ro
+      - ./configs/nginx/default.conf:/etc/nginx/conf.d/default.conf:rw
+    #
+    networks:
+      ## Connect to Classic Public-accessible Docker Network
+      ##- dockernet
+      ## Connect to internal Docker VPN Network and set hostname as alias
+      frontend:
+      backend:
+        aliases:
+          - nginx
+    #
+    deploy:
+      resources:
+        limits:
+          cpus: "${DOCKER_NGINX_CPUS:-1}"
+          memory: "${DOCKER_NGINX_MEMORY:-250MB}"
+    #
+    restart: unless-stopped
+    #
+    depends_on:
+      - php
+    #
+    links:
+      #- php-fpm
+      - php
+
+  # PHP-FPM Service
+  php:
+    #image: php:8-fpm-alpine
+    container_name: php
+    build: 
+      context: .
+      dockerfile: ./Dockerfile
+      #tags:
+        #- php
+        #- php:1.0
+        #- php:latest
+    volumes:
+      ## Mount read-only (:ro) application code
+      - ./www:/var/www/html:ro
+    #
+    networks:
+      ## Connect to Classic Public-accessible Docker Network
+      #- dockernet
+      ## Connect to internal Docker VPN Network and set hostname as alias
+      backend:
+        aliases:
+          - php
+    #
+    deploy:
+      resources:
+        limits:
+          cpus: "${DOCKER_PHP_CPUS:-1}"
+          memory: "${DOCKER_PHP_MEMORY:-250MB}"
+    #
+    ## Check is index.php is rendered
+    healthcheck:
+      #test: ["CMD", "curl", "-s", "http://nginx:80 | grep works_fake || exit 1"]
+      test: ["CMD", "curl", "-s", "http://nginx:80 | grep works || exit 1"]
+      interval: 3s
+      timeout: 3s
+      retries: 10
+    #
+    restart: unless-stopped
+
+
+## Classic Public-accessible Docker Network - All Container has access from outside
+#networks:
+#  dockernet:
+
+## Private VPN network - Only Nginx Container has access from outside
+networks:
+  frontend:
+    driver: bridge
+    driver_opts:
+      com.docker.network.enable_ipv6: "false"
+    ipam:
+      driver: default
+      config:
+        - subnet: 10.100.10.0/28
+  backend:
+    internal: true
+    driver: bridge
+    driver_opts:
+      com.docker.network.enable_ipv6: "false"
+    ipam:
+      driver: default
+      config:
+        - subnet: 10.100.11.0/28
