@@ -4,7 +4,7 @@ For Skill Factory study project (B8, HW)
 
 <br>
 # ИСХОДНАЯ ЗАДАЧА
-
+```bash
 01 Возьмите исходники простейшего PHP-приложения как образец;
 [https://github.com/SkillfactoryCoding/devops_module10_compose](SkillfactoryCoding/devops_module10_compose)
 02 Добавьте "docker-compose.yml" конфигурацию с двумя сервисами: "php" и "nginx";
@@ -15,6 +15,7 @@ Nginx должен использовать готовый докер-образ
 
 Результатом проверки будет скриншот из браузера по доступному приложению на http://127.0.0.1:80/ 
 и содержимое "docker-compose.yml";
+```
 
 # КРАТКАЯ ИНСТРУКЦИЯ
 
