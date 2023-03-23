@@ -4,6 +4,7 @@ For Skill Factory study project (B8, HW)
 
 <br>
 # ИСХОДНАЯ ЗАДАЧА
+
 ```bash
 01 Возьмите исходники простейшего PHP-приложения как образец;
 [https://github.com/SkillfactoryCoding/devops_module10_compose](SkillfactoryCoding/devops_module10_compose)
