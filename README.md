@@ -135,12 +135,6 @@ Docker version 23.0.1, build a5ee5b1
  ⠿ Container php            Created                                                                                                            0.1s
  ⠿ Container nginx          Created                                                                                                            0.1s
 Attaching to nginx, php
-php    | <br />
-php    | <b>Warning</b>:  PHP Startup: Unable to load dynamic library 'gd.so' (tried: /usr/local/lib/php/extensions/no-debug-non-zts-20220829/gd.so (Error loading shared library libpng16.so.16: No such file or directory (needed by /usr/local/lib/php/extensions/no-debug-non-zts-20220829/gd.so)), /usr/local/lib/php/extensions/no-debug-non-zts-20220829/gd.so.so (Error loading shared library /usr/local/lib/php/extensions/no-debug-non-zts-20220829/gd.so.so: No such file or directory)) in <b>Unknown</b> on line <b>0</b><br />
-php    | <br />
-php    | <b>Warning</b>:  PHP Startup: Unable to load dynamic library 'mcrypt' (tried: /usr/local/lib/php/extensions/no-debug-non-zts-20220829/mcrypt (Error loading shared library /usr/local/lib/php/extensions/no-debug-non-zts-20220829/mcrypt: No such file or directory), /usr/local/lib/php/extensions/no-debug-non-zts-20220829/mcrypt.so (Error loading shared library libmcrypt.so.4: No such file or directory (needed by /usr/local/lib/php/extensions/no-debug-non-zts-20220829/mcrypt.so))) in <b>Unknown</b> on line <b>0</b><br />
-php    | <br />
-php    | <b>Warning</b>:  PHP Startup: Unable to load dynamic library 'zip.so' (tried: /usr/local/lib/php/extensions/no-debug-non-zts-20220829/zip.so (Error loading shared library libzip.so.5: No such file or directory (needed by /usr/local/lib/php/extensions/no-debug-non-zts-20220829/zip.so)), /usr/local/lib/php/extensions/no-debug-non-zts-20220829/zip.so.so (Error loading shared library /usr/local/lib/php/extensions/no-debug-non-zts-20220829/zip.so.so: No such file or directory)) in <b>Unknown</b> on line <b>0</b><br />
 php    | [22-Mar-2023 05:10:13] NOTICE: fpm is running, pid 1
 php    | [22-Mar-2023 05:10:13] NOTICE: ready to handle connections
 nginx  | /docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
