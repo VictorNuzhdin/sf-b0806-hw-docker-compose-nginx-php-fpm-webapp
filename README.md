@@ -211,6 +211,7 @@ Server time: 2023-22-03 09:52:22
 --Проверка раздела и страницы с информацией о среде выполнения php-приложения
 chrome: http://nginx/info/
 
+=OUTPUT:
 SERVER_PHP_VERSION: 8.2.4
 SERVER_SOFTWARE...: nginx/1.23.3
 SERVER_IP_ADDR....: 10.100.10.2
