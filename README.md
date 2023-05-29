@@ -1,4 +1,4 @@
-# sf-pr08-docker-compose-nginx-php-fpm-webapp
+# sf-b0806-pr-docker-compose-nginx-php-fpm-webapp
 For Skill Factory study project (B8, HW)
 <br>
 
